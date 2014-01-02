@@ -9,15 +9,29 @@ describe('Setup', function(){
     })
 });
 
-describe('Default', function(){
+describe('Real Tests', function(){
     describe('Structural', function(){
-        describe('Should create a new set of cards', function(){
+        describe('Defaults Should be', function(){
             var cards = new playingCards();
-            it('with Jacks', function(){
-                assert.ok(cards.config.jacks, 'Jacks are turned of.');
+            it('One for Decks', function(){
+                assert.equal(cards.defaults.decks, 1);
             });
-            it('with One Deck', function(){
-                assert.equal(cards.config.jacks, 1, 'Number of Decks are wrong.');
+            it('Poker for Deck Type', function(){
+                assert.equal(cards.defaults.deckType, 'french');
+            });
+        });
+    });
+    describe('Configurables', function () {
+        describe('piquet', function () {
+            var cards = new playingCards({"deckType":'piquet'});
+            it('Create a new deck of cards of the type piquet', function(){
+                assert.equal(cards.config.deckType, 'piquet');
+            });
+        });
+        describe('doppelkopf', function(){
+            var cards = new playingCards({"deckType":'doppelkopf'});
+            it('Create a new deck of cards of the type dopplekopf', function(){
+                assert.equal(cards.config.deckType, 'doppelkopf');
             });
         });
     });
