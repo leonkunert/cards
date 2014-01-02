@@ -63,17 +63,14 @@ var ranks = {
 playingCards.prototype.init = function () {
     switch (this.config.deckType) {
         case "french":
-            console.log('french');
             this.config.suits = suits.standart;
             this.config.ranks = ranks.twoToA;
             break;
         case "piquet":
-            console.log('piquet');
             this.config.suits = suits.standart;
             this.config.ranks = ranks.sevenToA;
             break;
         case "doppelkopf":
-            console.log('doppelkopf');
             this.config.suits = suits.standart;
             this.config.ranks = ranks.nineToA;
             break;
@@ -87,10 +84,17 @@ playingCards.prototype.init = function () {
         for (s in o.suits) {
             for (r in o.ranks) {
                 l = this.cards.length;
-                this.cards[l] = new card(r, o.ranks[r], s, o.suits[s]);
+                this.cards[l] = new card(r, s);
             }
         }
     }
+    // jokers
+    /*for (j = 0; j < o.jokers; j++) {
+        l = this.cards.length;
+        // suit will always be 1 or 2
+        this.cards[l] = new playingCards.card("N", o.jokerText, (j % 2) + 1, '');
+    }*/
+    console.log(this);
 }
 
 var card = function (rank, suit, value) {
