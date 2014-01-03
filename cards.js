@@ -1,11 +1,10 @@
-var _ = require("underscore");
 // Cards functions
 var playingCards = function (options) {
     // Defaults
     this.defaults = {
-        "decks"          : 1,
+        "numberOfDecks" : 1,
         // Type of deck
-        "deckType"       : "french"
+        "deckType"      : "french"
     };
     // Extending defaults with options
     this.config = objExtend(this.defaults, options);
@@ -79,7 +78,7 @@ playingCards.prototype.init = function () {
     var o = this.config,
         l, i, s, r, j;
     // populate draw pile
-    for (i = 0; i < o.decks; i++) {
+    for (i = 0; i < o.numberOfDecks; i++) {
         // standard
         for (s in o.suits) {
             for (r in o.ranks) {
