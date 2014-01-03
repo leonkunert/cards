@@ -29,6 +29,10 @@ describe('Real Tests', function () {
             it('with 52 cards', function () {
                 assert.equal(_.size(cards.cards), 52);
             });
+            it('not shuffled', function () {
+                assert.equal(cards.defaults.startShuffled, false);
+                assert.equal(cards.config.startShuffled, false);
+            });
         });
     });
     describe('Configurables', function () {
@@ -139,7 +143,7 @@ describe('Real Tests', function () {
                     assert.equal(_.size(cards.cards), 52);
                 });
             });
-             describe('Handle null for deck number', function () {
+            describe('Handle null for deck number', function () {
                 var cards = new playingCards({'numberOfDecks': null});
                 it('One for Decks', function () {
                     assert.equal(cards.defaults.numberOfDecks, 1);

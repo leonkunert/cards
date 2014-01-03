@@ -6,12 +6,15 @@ var playingCards = function (options) {
         // Type of deck
         'deckType'      : 'french',
         // Number of Jokers per Deck
-        'numberOfJokers': 0
+        'numberOfJokers': 0,
+        'startShuffled' : false
     };
     // Extending defaults with options
     this.config = objExtend(this.defaults, options);
 
     this.init();
+
+    if (this.config.startShuffled) this.shuffle();
 
     return this;
 };
@@ -103,7 +106,24 @@ playingCards.prototype.init = function () {
             this.cards[l] = new card('Joker', (j % 2) + 1);
         }
     }
-}
+};
+
+playingCards.prototype.shuffle = function (n) {
+    if (!n) {
+        n = 5;
+    }
+    var l = this.cards.length,
+        r, tmp, i, j;
+
+    for (i = 0; i < n; i++) {
+        for (j = 0; j < l; j++) {
+            r = Math.floor(Math.random() * l);
+            tmp = this.cards[j];
+            this.cards[j] = this.cards[r];
+            this.cards[r] = tmp;
+        }
+    }
+};
 
 // TODO: Added configurable value as third argument
 var card = function (rank, suit, value) {
@@ -122,6 +142,6 @@ var objExtend = function (a, b) {
         a[i] = b[i];
     }
     return a;
-}
+};
 
 module.exports = playingCards;
