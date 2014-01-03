@@ -82,5 +82,25 @@ describe('Real Tests', function () {
                 });
             });
         });
+        describe('Jokers', function () {
+            describe('one deck', function () {
+                var cards = new playingCards({'numberOfJokers': 3});
+                it('with 35 cards', function () {
+                    assert.equal(_.size(cards.cards), 55);
+                });
+                it('tree of them Jokers', function() {
+                    assert.equal((_.last(cards.cards)).rank, 'Joker');
+                });
+            });
+            describe('multiple decks', function () {
+                var cards = new playingCards({'numberOfDecks': 2, 'numberOfJokers': 3});
+                it('with 110 cards', function () {
+                    assert.equal(_.size(cards.cards), 110);
+                });
+                it('six of them Jokers', function() {
+                    assert.equal((_.last(cards.cards)).rank, 'Joker');
+                });
+            });
+        });
     });
 });
