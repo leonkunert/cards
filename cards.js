@@ -10,7 +10,7 @@ var playingCards = function (options) {
     };
     // Extending defaults with options
     this.config = objExtend(this.defaults, options);
-    console.log(this.config);
+
     this.init();
 
     return this;

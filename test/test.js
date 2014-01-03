@@ -83,6 +83,12 @@ describe('Real Tests', function () {
             });
         });
         describe('Jokers', function () {
+            describe('one deck null for Jokers', function () {
+                var cards = new playingCards({'numberOfJokers': null});
+                it('with 32 cards', function () {
+                    assert.equal(_.size(cards.cards), 52);
+                });
+            });
             describe('one deck', function () {
                 var cards = new playingCards({'numberOfJokers': 3});
                 it('with 35 cards', function () {
