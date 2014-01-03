@@ -112,6 +112,18 @@ describe('Real Tests', function () {
                 });
             });
         });
+        describe('Shuffle Cards', function () {
+
+        });
+        describe('Deal Cards', function () {
+            var cards = new playingCards();
+            it('should deal 9 cards', function () {
+                assert.equal(cards.deal(9).length, 9);
+            });
+            it('should leave 43 cards', function () {
+                assert.equal(_.size(cards.cards), 43);
+            });
+        });
         describe('Wrong use', function () {
             describe('Handle null for deckType', function () {
                 var cards = new playingCards({'deckType': null});
@@ -156,6 +168,15 @@ describe('Real Tests', function () {
                 });
                 it('with 52 cards', function () {
                     assert.equal(_.size(cards.cards), 52);
+                });
+            });
+            describe('Dealing', function () {
+                var cards = new playingCards();
+                it('No cards are dealt in case of 0', function () {
+                    assert.equal(cards.deal(0), false);
+                });
+                it('No cards are dealt in case of null', function () {
+                    assert.equal(cards.deal(null), false);
                 });
             });
         });

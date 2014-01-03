@@ -11,6 +11,7 @@ var playingCards = function (options) {
     };
     // Extending defaults with options
     this.config = objExtend(this.defaults, options);
+    this.shuffled = false;
 
     this.init();
 
@@ -112,6 +113,8 @@ playingCards.prototype.shuffle = function (n) {
     if (!n) {
         n = 5;
     }
+    this.shuffled = true;
+
     var l = this.cards.length,
         r, tmp, i, j;
 
@@ -123,6 +126,17 @@ playingCards.prototype.shuffle = function (n) {
             this.cards[r] = tmp;
         }
     }
+};
+
+playingCards.prototype.deal = function (n) {
+    if (!n) {
+        return false;
+    }
+    var _cards = [];
+    while (_cards.length < n) {
+        _cards.push(this.cards.pop());
+    }
+    return _cards;
 };
 
 // TODO: Added configurable value as third argument
