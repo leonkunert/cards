@@ -102,5 +102,52 @@ describe('Real Tests', function () {
                 });
             });
         });
+        describe('Wrong use', function () {
+            describe('Handle null for deckType', function () {
+                var cards = new playingCards({'deckType': null});
+                it('One for Decks', function () {
+                    assert.equal(cards.defaults.numberOfDecks, 1);
+                });
+                it('4 suits', function () {
+                    assert.equal(_.size(cards.config.suits), 4);
+                });
+                it('13 ranks', function () {
+                    assert.equal(_.size(cards.config.ranks), 13);
+                });
+                it('with 52 cards', function () {
+                    assert.equal(_.size(cards.cards), 52);
+                });
+            });
+            describe('Handle 0 for deck number', function () {
+                var cards = new playingCards({'numberOfDecks': 0});
+                it('One for Decks', function () {
+                    assert.equal(cards.defaults.numberOfDecks, 1);
+                });
+                it('4 suits', function () {
+                    assert.equal(_.size(cards.config.suits), 4);
+                });
+                it('13 ranks', function () {
+                    assert.equal(_.size(cards.config.ranks), 13);
+                });
+                it('with 52 cards', function () {
+                    assert.equal(_.size(cards.cards), 52);
+                });
+            });
+             describe('Handle null for deck number', function () {
+                var cards = new playingCards({'numberOfDecks': null});
+                it('One for Decks', function () {
+                    assert.equal(cards.defaults.numberOfDecks, 1);
+                });
+                it('4 suits', function () {
+                    assert.equal(_.size(cards.config.suits), 4);
+                });
+                it('13 ranks', function () {
+                    assert.equal(_.size(cards.config.ranks), 13);
+                });
+                it('with 52 cards', function () {
+                    assert.equal(_.size(cards.cards), 52);
+                });
+            });
+        });
     });
 });

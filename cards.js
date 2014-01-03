@@ -2,15 +2,15 @@
 var playingCards = function (options) {
     // Defaults
     this.defaults = {
-        "numberOfDecks" : 1,
+        'numberOfDecks' : 1,
         // Type of deck
-        "deckType"      : "french",
+        'deckType'      : 'french',
         // Number of Jokers per Deck
-        "numberOfJokers": 0
+        'numberOfJokers': 0
     };
     // Extending defaults with options
     this.config = objExtend(this.defaults, options);
-
+    console.log(this.config);
     this.init();
 
     return this;
@@ -18,66 +18,74 @@ var playingCards = function (options) {
 
 var suits = {
     'standart': {
-        "♠": "Spades",
-        "♦": "Diamonds",
-        "♣": "Clubs",
-        "♥": "Hearts"
+        '♠': 'Spades',
+        '♦': 'Diamonds',
+        '♣': 'Clubs',
+        '♥': 'Hearts'
     }
 };
 
 var ranks = {
     'twoToA': {
-        "2": "Two",
-        "3": "Three",
-        "4": "Four",
-        "5": "Five",
-        "6": "Six",
-        "7": "Seven",
-        "8": "Eight",
-        "9": "Nine",
-        "10": "Ten",
-        "J": "Jack",
-        "Q": "Queen",
-        "K": "King",
-        "A": "Ace"
+        '2': 'Two',
+        '3': 'Three',
+        '4': 'Four',
+        '5': 'Five',
+        '6': 'Six',
+        '7': 'Seven',
+        '8': 'Eight',
+        '9': 'Nine',
+        '10': 'Ten',
+        'J': 'Jack',
+        'Q': 'Queen',
+        'K': 'King',
+        'A': 'Ace'
     },
     'sevenToA': {
-        "7": "Seven",
-        "8": "Eight",
-        "9": "Nine",
-        "10": "Ten",
-        "J": "Jack",
-        "Q": "Queen",
-        "K": "King",
-        "A": "Ace"
+        '7': 'Seven',
+        '8': 'Eight',
+        '9': 'Nine',
+        '10': 'Ten',
+        'J': 'Jack',
+        'Q': 'Queen',
+        'K': 'King',
+        'A': 'Ace'
     },
     'nineToA': {
-        "9": "Nine",
-        "10": "Ten",
-        "J": "Jack",
-        "Q": "Queen",
-        "K": "King",
-        "A": "Ace"
+        '9': 'Nine',
+        '10': 'Ten',
+        'J': 'Jack',
+        'Q': 'Queen',
+        'K': 'King',
+        'A': 'Ace'
     }
 };
 
 playingCards.prototype.init = function () {
     switch (this.config.deckType) {
-        case "french":
+        default:
+        case null:
+        case 'french':
             this.config.suits = suits.standart;
             this.config.ranks = ranks.twoToA;
             break;
-        case "piquet":
+        case 'piquet':
             this.config.suits = suits.standart;
             this.config.ranks = ranks.sevenToA;
             break;
-        case "doppelkopf":
+        case 'doppelkopf':
             this.config.suits = suits.standart;
             this.config.ranks = ranks.nineToA;
             break;
     }
     this.cards = [];
     var l, i, s, r, j;
+
+    // Number of decks at least 1 and not null
+    if (this.config.numberOfDecks === 0 || this.config.numberOfDecks === null) {
+        this.config.numberOfDecks = 1;
+    }
+
     // populate draw pile
     for (i = 0; i < this.config.numberOfDecks; i++) {
         // standard
@@ -92,7 +100,7 @@ playingCards.prototype.init = function () {
         for (j = 0; j < this.config.numberOfJokers; j++) {
             l = this.cards.length;
             // suit will always be 1 or 2
-            this.cards[l] = new card("Joker", (j % 2) + 1);
+            this.cards[l] = new card('Joker', (j % 2) + 1);
         }
     }
 }
