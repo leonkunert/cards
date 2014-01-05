@@ -3,7 +3,11 @@ var playingCards = function (options) {
     // Defaults
     this.defaults = {
         'numberOfDecks' : 1,
-        // Type of deck
+        /* Type of deck possible values
+         * french 52 cards 2 to Ass
+         * piquet 32 cards 7 to Ass
+         * doppelkopf 24 cards 9 to Ass
+         */
         'deckType'      : 'french',
         // Number of Jokers per Deck
         'numberOfJokers': 0,
